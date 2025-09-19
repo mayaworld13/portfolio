@@ -28,5 +28,6 @@ jobs:
         uses: snyk/actions/docker@master
         with:
           image: ${{ secrets.DOCKER_IMAGE }}
+          args: --severity-threshold=medium --org=${{ secrets.SNYK_ORG }} --project-name=portfolio-docker
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
