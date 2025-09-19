@@ -1,4 +1,4 @@
-name: CI with SonarQube (Azure VM) & Snyk
+name: CI with SonarQube (Azure VM) & Snyk server
 
 on:
   push:
