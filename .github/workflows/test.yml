@@ -11,15 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # -----------------------------
-      # Checkout Source Code
-      # -----------------------------
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # -----------------------------
-      # SonarQube Scan (Azure VM)
-      # -----------------------------
+      # ---- SonarQube Analysis ----
       - name: SonarQube Scan (Azure VM)
         uses: sonarsource/sonarqube-scan-action@v1.0.0
         env:
@@ -30,30 +25,17 @@ jobs:
             -Dsonar.projectKey=portfolio-ci
             -Dsonar.organization=mayaworld13
 
-      # -----------------------------
-      # Snyk Scan (Logs - JSON output)
-      # -----------------------------
-      - name: Snyk Container Test (JSON Output)
+      # ---- Snyk Container Scan ----
+      - name: Snyk Container Test (JSON + SARIF Output)
         uses: snyk/actions/docker@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: ${{ secrets.DOCKER_IMAGE }}
-          args: test --json-file-output=snyk.json
+          args: test --json-file-output=snyk.json --sarif-file-output=snyk.sarif
 
       - name: Show Full Snyk Report in Logs
         run: cat snyk.json
-
-      # -----------------------------
-      # Snyk Scan (Upload to GitHub Security tab)
-      # -----------------------------
-      - name: Snyk Container Test (SARIF Output)
-        uses: snyk/actions/docker@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          image: ${{ secrets.DOCKER_IMAGE }}
-          args: test --sarif-file-output=snyk.sarif
 
       - name: Upload Snyk results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
