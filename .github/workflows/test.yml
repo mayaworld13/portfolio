@@ -35,7 +35,7 @@ jobs:
           image: ${{ secrets.DOCKER_IMAGE }}
           args: test --json-file-output=snyk.json --sarif-file-output=snyk.sarif
 
-      # Print full report in job logs
+      # Print Snyk JSON report in job logs
       - name: Show Full Snyk Report
         run: cat snyk.json
 
