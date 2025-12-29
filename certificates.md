@@ -1,3 +1,9 @@
+<img width="1536" height="1024" alt="ChatGPT Image Dec 29, 2025, 11_12_07 PM (1)" src="https://github.com/user-attachments/assets/0123c4dc-00f6-410c-88d1-43f8ad5fc938" />
+
+<img width="623" height="400" alt="lobo3" src="https://github.com/user-attachments/assets/98740f61-7456-46df-a75f-b485ab4d61c9" />
+
+
+
 # 🌐 mayaworld.tech
 
 Welcome to **mayaworld.tech** — a live website hosted on a cloud server with HTTPS enabled using a free SSL certificate from **Let's Encrypt**.
